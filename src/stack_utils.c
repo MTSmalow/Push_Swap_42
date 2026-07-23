@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 09:57:38 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 10:02:43 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 15:58:37 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,54 @@ int	stack_add_back(t_node **stack, int value)
 			last = last->next;
 		last->next = new_node;
 		new_node->prev = last;
+	}
+	return (1);
+}
+
+int	stack_size(t_node *stack)
+{
+	int	count;
+
+	count = 0;
+	while (stack)
+	{
+		count++;
+		stack = stack->next;
+	}
+	return (count);
+}
+
+int	find_small(t_node *stack)
+{
+	int	cont;
+	int	cont_small;
+	int	small;
+
+	if (!stack)
+		return (-1);
+	cont = 0;
+	cont_small = 0;
+	small = stack->value;
+	while (stack)
+	{
+		if (stack->value < small)
+		{
+			small = stack->value;
+			cont_small = cont;
+		}
+		cont++;
+		stack = stack->next;
+	}
+	return (cont_small);
+}
+
+int	is_sorted(t_node *stack)
+{
+	while (stack && stack->next)
+	{
+		if (stack->value > stack->next->value)
+			return (0);
+		stack = stack->next;
 	}
 	return (1);
 }

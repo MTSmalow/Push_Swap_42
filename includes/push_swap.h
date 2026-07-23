@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 11:40:05 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 12:22:29 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 16:10:54 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,16 @@ typedef struct s_stack
 	t_node	*top;
 }	t_stack;
 
+int		find_small(t_node *stack);
+int		stack_size(t_node *stack);
+int		is_sorted(t_node *stack);
 int		has_duplicate(t_node *stack, int num);
 int		is_valid_number(char *str);
 int		stack_add_back(t_node **stack, int value);
 int		free_stack(t_node **stack);
 long	ft_atol_safe(char *str, int *error);
+void	sort_three(t_node **stack_a);
+void	sort_small(t_node **stack_a, t_node **stack_b);
 void	pa(t_node **stack_a, t_node **stack_b);
 void	pb(t_node **stack_a, t_node **stack_b);
 void	sa(t_node **stack_a);
@@ -46,6 +51,7 @@ void	rr(t_node **stack_a, t_node **stack_b);
 void	rra(t_node **stack_a);
 void	rrb(t_node **stack_b);
 void	rrr(t_node **stack_a, t_node **stack_b);
+
 t_node	*create_node(int value);
 
 #endif
