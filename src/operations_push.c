@@ -6,9 +6,11 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 11:07:21 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 11:14:09 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 16:14:57 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/push_swap.h"
 
 static void	push(t_node **dest, t_node **src)
 {

@@ -6,9 +6,11 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/23 11:14:45 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 11:27:45 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 16:15:10 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/push_swap.h"
 
 void	rotate(t_node **stack)
 {
