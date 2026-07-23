@@ -6,11 +6,11 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 12:48:27 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/22 13:41:25 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 10:26:37 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include '../push_shawp.h'
+#include "../includes/push_swap.h"
 
 int	is_valid_number(char *str)
 {

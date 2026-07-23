@@ -3,7 +3,7 @@ CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -I includes
 
 SRC_DIR     = src
-SRC         = $(SRC_DIR)/main.c
+SRC         = $(SRC_DIR)/main.c $(SRC_DIR)/parser.c $(SRC_DIR)/stack_utils.c $(SRC_DIR)/utils.c
 OBJ         = $(SRC:.c=.o)
 
 all: $(NAME)
