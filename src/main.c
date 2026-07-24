@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 11:48:10 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 16:09:12 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/23 20:39:26 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	main(int argc, char **argv)
 		}
 		i++;
 	}
+	assign_indexes(&stack_a);
 	size = stack_size(stack_a);
 	if (!is_sorted(stack_a))
 	{
@@ -59,6 +60,8 @@ int	main(int argc, char **argv)
 			sort_three(&stack_a);
 		else if (size <= 5)
 			sort_small(&stack_a, &stack_b);
+		else if (size > 5)
+			radix_sort(&stack_a, &stack_b);
 	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);
