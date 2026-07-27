@@ -2,26 +2,31 @@ NAME        = push_swap
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror -I includes
 
-SRC_DIR     = src
-SRC         = $(SRC_DIR)/main.c $(SRC_DIR)/parser.c $(SRC_DIR)/stack_utils.c $(SRC_DIR)/utils.c \
-							$(SRC_DIR)/sort_small.c $(SRC_DIR)/sort_three.c $(SRC_DIR)/operations_push.c \
-							$(SRC_DIR)/operations_swap.c $(SRC_DIR)/operations_rotate.c $(SRC_DIR)/operations_reverserotate.c \
+LIBFT_DIR   = includes/libft
+LIBFT       = $(LIBFT_DIR)/libft.a
 
+SRC_DIR     = src
+SRC         = $(wildcard $(SRC_DIR)/*.c)
 OBJ         = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

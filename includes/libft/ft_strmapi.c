@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/28 10:54:42 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/05/28 11:07:56 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	unsigned int	i;
+	char			*sm;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	if (!s || !f)
+		return (0);
+	i = 0;
+	sm = (char *)malloc (ft_strlen(s) + 1);
+	if (!sm)
+		return (0);
+	while (s[i])
 	{
-		j = i->next;
-		while (j)
-		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
-		}
-		i = i->next;
+		sm[i] = f(i, s[i]);
+		i++;
 	}
-	return (mistakes / tot_pairs);
+	sm[i] = '\0';
+	return (sm);
 }

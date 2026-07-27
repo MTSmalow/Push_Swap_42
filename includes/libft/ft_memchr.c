@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/19 22:11:30 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/05/25 16:58:16 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+void	*ft_memchr(const void *ptr, int valor, size_t num)
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	unsigned char		*p;
+	size_t				c;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	c = 0;
+	p = (unsigned char *)ptr;
+	while (c < num)
 	{
-		j = i->next;
-		while (j)
-		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
-		}
-		i = i->next;
+		if (p[c] == (unsigned char)valor)
+			return ((void *)&p[c]);
+		c++;
 	}
-	return (mistakes / tot_pairs);
+	return (0);
 }

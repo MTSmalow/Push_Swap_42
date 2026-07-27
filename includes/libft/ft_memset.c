@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/18 10:08:00 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/05/19 20:08:17 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+void	*ft_memset(void *ptr, int c, size_t len)
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	unsigned char	*p;
+	size_t			i;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	p = (unsigned char *)ptr;
+	i = 0;
+	while (i < len)
 	{
-		j = i->next;
-		while (j)
-		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
-		}
-		i = i->next;
+		p[i] = (unsigned char)c;
+		i++;
 	}
-	return (mistakes / tot_pairs);
+	return (ptr);
 }

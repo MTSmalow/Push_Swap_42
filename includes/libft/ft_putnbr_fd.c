@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/28 11:13:27 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/05/29 13:08:12 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	long	nb;
+	char	result;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	nb = n;
+	if (nb < 0)
 	{
-		j = i->next;
-		while (j)
-		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
-		}
-		i = i->next;
+		write(fd, "-", 1);
+		nb = nb * -1;
 	}
-	return (mistakes / tot_pairs);
+	if (nb >= 10)
+		ft_putnbr_fd(nb / 10, fd);
+	result = nb % 10 + '0';
+	write(fd, &result, 1);
 }

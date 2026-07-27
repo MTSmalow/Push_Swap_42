@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/15 20:33:18 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/06/01 13:48:49 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	size_t	i;
+	size_t	j;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	if (little[0] == '\0')
+		return ((char *)big);
+	i = 0;
+	while (big[i] && i < len)
 	{
-		j = i->next;
-		while (j)
+		j = 0;
+		while (big[i + j]
+			&& little[j]
+			&& (i + j) < len
+			&& big[i + j] == little[j])
 		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
+			j++;
 		}
-		i = i->next;
+		if (little[j] == '\0')
+			return ((char *)&big[i]);
+		i++;
 	}
-	return (mistakes / tot_pairs);
+	return (NULL);
 }

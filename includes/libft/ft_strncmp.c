@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   disorder.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/07/27 15:24:02 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 16:02:31 by edmedeir         ###   ########.fr       */
+/*   Created: 2026/05/15 20:06:39 by edmedeir          #+#    #+#             */
+/*   Updated: 2026/06/01 13:42:43 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-double	compute_disorder(t_node *stack)
+int	ft_strncmp(const char *str1, const char *str2, size_t siz)
 {
-	t_node	*i;
-	t_node	*j;
-	double	mistakes;
-	double	tot_pairs;
+	size_t	cont;
 
-	mistakes = 0.0;
-	tot_pairs = 0.0;
-	i = stack;
-	if (!stack || !(stack->next))
-		return (0.0);
-	while (i)
+	cont = 0;
+	while (cont < siz && (str1[cont] || str2[cont]))
 	{
-		j = i->next;
-		while (j)
-		{
-			tot_pairs += 1.0;
-			if (i->value > j->value)
-				mistakes += 1.0;
-			j = j->next;
-		}
-		i = i->next;
+		if (str1[cont] == str2[cont])
+			cont++;
+		else
+			return ((unsigned char) str1[cont] - (unsigned char) str2[cont]);
 	}
-	return (mistakes / tot_pairs);
+	return (0);
 }

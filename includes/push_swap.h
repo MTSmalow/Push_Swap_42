@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 11:40:05 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/27 15:55:08 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/27 16:44:47 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-#	include <stdio.h>
+#	include "libft/libft.h"
 
 typedef struct s_node
 {
@@ -26,10 +26,20 @@ typedef struct s_node
 	struct s_node		*prev;
 }	t_node;
 
-typedef struct s_stack
+typedef enum e_strategy
 {
-	t_node	*top;
-}	t_stack;
+	STRAT_ADAPTIVE,
+	STRAT_SIMPLE,
+	STRAT_MEDIUM,
+	STRAT_COMPLEX
+}	t_strategy;
+
+typedef struct s_config
+{
+	t_strategy	strategy;
+	int			bench;
+	double		disorder;
+}	t_config;
 
 int		find_small(t_node *stack);
 int		stack_size(t_node *stack);
@@ -38,6 +48,8 @@ int		has_duplicate(t_node *stack, int num);
 int		is_valid_number(char *str);
 int		stack_add_back(t_node **stack, int value);
 int		free_stack(t_node **stack);
+int		parse_flags(int argc, char **argv, t_config *config, int *start_idx);
+int		fill_stack_a(t_node **stack_a, int argc, char **argv, int start_idx);
 long	ft_atol_safe(char *str, int *error);
 void	radix_sort(t_node **stack_a, t_node **stack_b);
 void	assign_indexes(t_node **stack);
@@ -54,6 +66,7 @@ void	rr(t_node **stack_a, t_node **stack_b);
 void	rra(t_node **stack_a);
 void	rrb(t_node **stack_b);
 void	rrr(t_node **stack_a, t_node **stack_b);
+void	sort_stack(t_node **stack_a, t_node **stack_b, t_config *config);
 double	compute_disorder(t_node *stack);
 
 t_node	*create_node(int value);

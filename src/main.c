@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 11:48:10 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 20:39:26 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/27 16:18:19 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,27 @@
 
 int	main(int argc, char **argv)
 {
-	t_node	*stack_a;
-	t_node	*stack_b;
-	long	num;
-	int		error;
-	int		i;
-	int		size;
+	t_config	config;
+	t_node		*stack_a;
+	t_node		*stack_b;
+	int			start_idx;
 
-	if (argc <= 1)
+	if (argc < 2)
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
-	i = 1;
-	while (argv[i])
+	if (!parse_flags(argc, argv, &config, &start_idx))
 	{
-		error = 0;
-		if (!is_valid_number(argv[i]))
-		{
-			free_stack(&stack_a);
-			write(2, "Error\n", 6);
-			return (1);
-		}
-		num = ft_atol_safe(argv[i], &error);
-		if (error == 1 || has_duplicate(stack_a, (int)num))
-		{
-			free_stack(&stack_a);
-			write(2, "Error\n", 6);
-			return (1);
-		}
-		if (!stack_add_back(&stack_a, (int)num))
-		{
-			free_stack(&stack_a);
-			write(2, "Error\n", 6);
-			return (1);
-		}
-		i++;
+		ft_putstr_fd("Error\n", 2);
+		return (1);
 	}
-	assign_indexes(&stack_a);
-	size = stack_size(stack_a);
-	if (!is_sorted(stack_a))
+	if (!fill_stack_a(&stack_a, argc, argv, start_idx))
 	{
-		if (size == 2)
-			sa(&stack_a);
-		else if (size == 3)
-			sort_three(&stack_a);
-		else if (size <= 5)
-			sort_small(&stack_a, &stack_b);
-		else if (size > 5)
-			radix_sort(&stack_a, &stack_b);
+		ft_putstr_fd("Error\n", 2);
+		return (1);
 	}
+	config.disorder = compute_disorder(stack_a);
+	sort_stack(&stack_a, &stack_b, &config);
 	free_stack(&stack_a);
-	free_stack(&stack_b);
 	return (0);
 }
