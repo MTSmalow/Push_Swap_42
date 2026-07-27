@@ -6,7 +6,7 @@
 /*   By: edmedeir <edmedeir@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/07/22 11:40:05 by edmedeir          #+#    #+#             */
-/*   Updated: 2026/07/23 20:40:28 by edmedeir         ###   ########.fr       */
+/*   Updated: 2026/07/27 15:55:08 by edmedeir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
+#	include <stdio.h>
 
 typedef struct s_node
 {
@@ -53,6 +54,7 @@ void	rr(t_node **stack_a, t_node **stack_b);
 void	rra(t_node **stack_a);
 void	rrb(t_node **stack_b);
 void	rrr(t_node **stack_a, t_node **stack_b);
+double	compute_disorder(t_node *stack);
 
 t_node	*create_node(int value);
 
